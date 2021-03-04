@@ -20,7 +20,7 @@ function BcGroup({
       <AccordionSummary expandIcon={<ExpandMore />} aria-controls={id.concat('-content')} id={id.concat('-header')}>
         <Typography>{title}</Typography>
       </AccordionSummary>
-      <AccordionDetails id={id.concat('-content')}>
+      <AccordionDetails>
         <BcGrid>{children}</BcGrid>
       </AccordionDetails>
     </Accordion>
