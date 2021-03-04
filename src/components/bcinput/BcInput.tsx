@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core'
 import HelpIcon from '@material-ui/icons/Help'
 import React, { ReactElement, ReactNode, useState } from 'react'
+import { Control, Controller } from 'react-hook-form'
 import styles from './BcInput.module.css'
 
 function Help({ mobile = false, onClick, fieldName }: { mobile?: boolean; onClick: () => void; fieldName: string }) {
@@ -22,7 +23,17 @@ function Help({ mobile = false, onClick, fieldName }: { mobile?: boolean; onClic
   )
 }
 
-function BcInputWrapper({
+const theme = createMuiTheme({
+  overrides: {
+    MuiFormControl: {
+      marginDense: {
+        marginTop: 0,
+      },
+    },
+  },
+})
+
+function BcInputWrapper<T = string>({
   id,
   label,
   hint,
@@ -30,6 +41,8 @@ function BcInputWrapper({
   fullWidth = false,
   inGrid = false,
   children,
+  control,
+  defaultValue,
 }: {
   id: string
   label: string
@@ -38,17 +51,9 @@ function BcInputWrapper({
   fullWidth?: boolean
   inGrid?: boolean
   children: ReactElement
+  control: Control
+  defaultValue: T
 }): JSX.Element {
-  const theme = createMuiTheme({
-    overrides: {
-      MuiFormControl: {
-        marginDense: {
-          marginTop: 0,
-        },
-      },
-    },
-  })
-
   const [isOpen, setOpen] = useState<boolean>(false)
   return (
     <ThemeProvider theme={theme}>
@@ -63,7 +68,31 @@ function BcInputWrapper({
         </Grid>
         <Grid item xs={12} md={9} container alignItems="center">
           <div className={fullWidth ? styles.FullScreenInput : ''}>
-            {React.cloneElement(children, { fullWidth, id, margin: 'dense', variant: 'outlined' })}
+            <Controller
+              name={id}
+              control={control}
+              defaultValue={defaultValue}
+              render={({ onChange, value }) =>
+                React.cloneElement(children, {
+                  fullWidth,
+                  id,
+                  margin: 'dense',
+                  variant: 'outlined',
+                  onChange: (event: any, value: any) => {
+                    if (event?.target?.value) {
+                      onChange(event.target.value)
+                    } else if (value?.props?.value) {
+                      onChange(value.props.value)
+                    } else if (value) {
+                      onChange(value)
+                    } else {
+                      onChange(event)
+                    }
+                  },
+                  value,
+                })
+              }
+            />
           </div>
           {help && <Help mobile onClick={() => setOpen(true)} fieldName={label} />}
         </Grid>
