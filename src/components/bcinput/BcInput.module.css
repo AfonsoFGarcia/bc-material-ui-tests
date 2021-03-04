@@ -12,6 +12,7 @@
 
 .NoWrap {
   flex-wrap: nowrap !important;
+  min-height: 48px;
 }
 
 .MarginMiddle {

@@ -174,7 +174,7 @@ function App() {
               value={null}
               onChange={() => {}}
               renderInput={props => (
-                <TextField name="birthdate" {...props} variant="outlined" margin="dense" helperText="" />
+                <TextField name="birthdate" id="birthdate" {...props} variant="outlined" margin="dense" helperText="" />
               )}
             />
           </BcInputWrapper>
