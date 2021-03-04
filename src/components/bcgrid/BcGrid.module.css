@@ -1,0 +1,20 @@
+.Grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Grid > div {
+    flex: 50%
+}
+
+@media screen and (max-width: 959px) {
+    .Grid > div {
+        flex: 100%
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .Grid > div {
+        flex: 33.33%
+    }
+}

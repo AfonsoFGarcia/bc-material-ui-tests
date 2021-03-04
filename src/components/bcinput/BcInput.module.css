@@ -1,0 +1,54 @@
+.FullScreenInput {
+    flex-grow: 1;
+}
+
+.HelpIcon {
+    margin-left: 0.5rem;
+}
+
+.LabelPadding {
+    padding: 10.5px 0 !important;
+}
+
+.MarginTop8 {
+    margin-top: 8px !important;
+}
+
+.NoWrap {
+    flex-wrap: nowrap !important;
+}
+
+.MarginMiddle {
+    align-content: baseline;
+}
+
+.MarginMiddle:nth-child(odd) {
+    padding-right: 4px;
+}
+
+.MarginMiddle:nth-child(even) {
+    padding-left: 4px;
+}
+
+@media screen and (max-width: 959px) {
+    .MarginMiddle {
+        padding: 0;
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .MarginMiddle:nth-child(3n-2) {
+        padding-left: 0;
+        padding-right: 4px;
+    }
+
+    .MarginMiddle:nth-child(3n-1) {
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    .MarginMiddle:nth-child(3n) {
+        padding-left: 4px;
+        padding-right: 0;
+    }
+}
