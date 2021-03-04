@@ -309,15 +309,9 @@ function App() {
       >
         <BcInputWrapper id="toggleGroup" label="Toggle group">
           <ToggleButtonGroup exclusive value={toggleGroup} onChange={(_event, value) => setToggleGroup(value)}>
-            <ToggleButton value="university" size="small">
-              University
-            </ToggleButton>
-            <ToggleButton value="school" size="small">
-              School
-            </ToggleButton>
-            <ToggleButton value="other" size="small">
-              Other
-            </ToggleButton>
+            <ToggleButton value="university">University</ToggleButton>
+            <ToggleButton value="school">School</ToggleButton>
+            <ToggleButton value="other">Other</ToggleButton>
           </ToggleButtonGroup>
         </BcInputWrapper>
         <BcInputWrapper id="equivalentOfCheckbox" label="Equivalent of Checkbox">
@@ -325,9 +319,9 @@ function App() {
         </BcInputWrapper>
         <BcInputWrapper id="radioButtonGroup" label="Radio button group">
           <RadioGroup name="radioButtonGroup">
-            <FormControlLabel value="meyrin" control={<Radio size="small" />} label="Meyrin" />
-            <FormControlLabel value="prevessin" control={<Radio size="small" />} label="Prevessin" />
-            <FormControlLabel value="geneva" control={<Radio size="small" />} label="Geneva" />
+            <FormControlLabel value="meyrin" control={<Radio />} label="Meyrin" />
+            <FormControlLabel value="prevessin" control={<Radio />} label="Prevessin" />
+            <FormControlLabel value="geneva" control={<Radio />} label="Geneva" />
           </RadioGroup>
         </BcInputWrapper>
         <BcInputWrapper id="field1" label="Field">
