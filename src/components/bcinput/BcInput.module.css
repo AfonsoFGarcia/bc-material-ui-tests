@@ -18,17 +18,13 @@
     align-content: baseline;
 }
 
-.MarginMiddle:nth-child(odd) {
-    padding-right: 4px;
-}
+@media screen and (min-width: 960px) {
+    .MarginMiddle:nth-child(odd) {
+        padding-right: 4px;
+    }
 
-.MarginMiddle:nth-child(even) {
-    padding-left: 4px;
-}
-
-@media screen and (max-width: 959px) {
-    .MarginMiddle {
-        padding: 0;
+    .MarginMiddle:nth-child(even) {
+        padding-left: 4px;
     }
 }
 
