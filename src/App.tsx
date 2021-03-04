@@ -12,7 +12,10 @@ import {
   Toolbar,
   Typography,
 } from '@material-ui/core'
-import { Menu, Notifications, Search, Share } from '@material-ui/icons'
+import Menu from '@material-ui/icons/Menu'
+import Notifications from '@material-ui/icons/Notifications'
+import Search from '@material-ui/icons/Search'
+import Share from '@material-ui/icons/Share'
 import { ToggleButtonGroup, ToggleButton } from '@material-ui/lab'
 import { DatePicker, DateRangeDelimiter, DateRangePicker, LocalizationProvider } from '@material-ui/pickers'
 import DateFnsUtils from '@material-ui/pickers/adapter/date-fns'
@@ -31,18 +34,18 @@ function Header() {
     <>
       <AppBar position="fixed">
         <Toolbar>
-          <IconButton edge="start" color="inherit">
+          <IconButton edge="start" color="inherit" aria-label="Menu">
             <Menu />
           </IconButton>
           <Typography variant="h6">BC Information Mgmt UI</Typography>
           <div className={`${styles.HeaderIcons} ${styles.Spacing}`}>
-            <IconButton edge="start" color="inherit">
+            <IconButton edge="start" color="inherit" aria-label="Notifications">
               <Notifications />
             </IconButton>
-            <IconButton edge="start" color="inherit">
+            <IconButton edge="start" color="inherit" aria-label="Share">
               <Share />
             </IconButton>
-            <IconButton edge="start" color="inherit">
+            <IconButton edge="start" color="inherit" aria-label="Search">
               <Search />
             </IconButton>
           </div>
