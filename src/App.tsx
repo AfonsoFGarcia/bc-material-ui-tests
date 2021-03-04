@@ -46,6 +46,8 @@ function Header() {
 
 function App() {
   const [value, setValue] = useState<DateRange<Date>>([null, null]);
+  const [value2, setValue2] = useState<DateRange<Date>>([null, null]);
+  const [value3, setValue3] = useState<string>('');
   return (
     <LocalizationProvider dateAdapter={DateFnsUtils}>
       <Header />
@@ -89,8 +91,8 @@ function App() {
             <DateRangePicker
               startText=""
               endText=""
-              value={value}
-              onChange={(newValue) => setValue(newValue)}
+              value={value2}
+              onChange={(newValue) => setValue2(newValue)}
               renderInput={(startProps, endProps) => (
                 <React.Fragment>
                   <TextField {...startProps} margin="dense" helperText="" />
@@ -129,7 +131,7 @@ function App() {
             </RadioGroup>
           </BcInputWrapper>
           <BcInputWrapper id="toggleGroup" label="Toggle group" help={<HelpMe helpText="This is the toggle group" />}>
-            <ToggleButtonGroup exclusive>
+            <ToggleButtonGroup exclusive value={value3} onChange={(event, newValue) => setValue3(newValue)}>
               <ToggleButton value="university" size="small">
                 University
               </ToggleButton>
