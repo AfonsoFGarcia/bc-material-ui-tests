@@ -359,7 +359,7 @@ function App() {
               <ToggleButton value="other">Other</ToggleButton>
             </ToggleButtonGroup>
           </BcInputWrapper>
-          <BcInputWrapper id="equivalentOfCheckbox" label="Equivalent of Checkbox" control={control} defaultValue={''}>
+          <BcInputWrapper<boolean> id="equivalentOfCheckbox" label="Equivalent of Checkbox" control={control} defaultValue={false}>
             <Switch />
           </BcInputWrapper>
           <BcInputWrapper id="radioButtonGroup" label="Radio button group" control={control} defaultValue={''}>
