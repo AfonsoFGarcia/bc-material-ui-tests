@@ -174,7 +174,7 @@ function App() {
               value={null}
               onChange={() => {}}
               renderInput={props => (
-                <TextField name="birthday" {...props} variant="outlined" margin="dense" helperText="" />
+                <TextField name="birthdate" {...props} variant="outlined" margin="dense" helperText="" />
               )}
             />
           </BcInputWrapper>
@@ -298,8 +298,15 @@ function App() {
           <BcInputWrapper fullWidth id="supervisor" label="Supervisor" control={control} defaultValue={''}>
             <TextField />
           </BcInputWrapper>
-          <BcInputWrapper fullWidth id="bankAccount" label="Bank Account" control={control} defaultValue={''}>
-            <TextField disabled value="CH 01 READ-ONLY-5892" />
+          <BcInputWrapper
+            fullWidth
+            id="bankAccount"
+            label="Bank Account"
+            control={control}
+            defaultValue={'CH 01 READ-ONLY-5892'}
+            disabled
+          >
+            <TextField />
           </BcInputWrapper>
         </BcGroup>
         <BcGroup id="leaveInformation" title="Leave information" expanded={expanded} setExpanded={setExpanded}>

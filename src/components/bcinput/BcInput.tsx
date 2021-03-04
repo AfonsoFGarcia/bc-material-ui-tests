@@ -30,6 +30,11 @@ const theme = createMuiTheme({
         marginTop: 0,
       },
     },
+    MuiOutlinedInput: {
+      root: {
+        borderRadius: 0,
+      },
+    },
   },
 })
 
@@ -43,6 +48,7 @@ function BcInputWrapper<T = string>({
   children,
   control,
   defaultValue,
+  disabled = false,
 }: {
   id: string
   label: string
@@ -53,6 +59,7 @@ function BcInputWrapper<T = string>({
   children: ReactElement
   control: Control
   defaultValue: T
+  disabled?: boolean
 }): JSX.Element {
   const [isOpen, setOpen] = useState<boolean>(false)
   return (
@@ -60,7 +67,7 @@ function BcInputWrapper<T = string>({
       <Grid container direction="row" className={inGrid ? styles.MarginMiddle : ''}>
         <Grid item xs={12} md={3}>
           <Grid container alignItems="center" className={styles.NoWrap}>
-            <FormLabel htmlFor={id} className={styles.LabelPadding}>
+            <FormLabel id={`${id}-label`} htmlFor={id} className={styles.LabelPadding}>
               {label}
             </FormLabel>
             {help && <Help onClick={() => setOpen(true)} fieldName={label} />}
@@ -78,6 +85,9 @@ function BcInputWrapper<T = string>({
                   id,
                   margin: 'dense',
                   variant: 'outlined',
+                  disabled,
+                  className: disabled ? styles.Disabled : '',
+                  'aria-labelledby': `${id}-label`,
                   onChange: (event: any, value: any) => {
                     if (event?.target?.value) {
                       onChange(event.target.value)
