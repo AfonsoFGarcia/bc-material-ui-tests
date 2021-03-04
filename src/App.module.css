@@ -5,5 +5,17 @@
 }
 
 .Spacing > * {
-    margin-left: 8px;
+    margin-left: 8px !important;
+}
+
+.OffsetSecondaryBar {
+    top: 64px !important;
+}
+
+.OffsetHeader {
+    height: 128px;
+}
+
+.Green {
+    background-color: green !important;
 }
