@@ -74,7 +74,7 @@ function App() {
       <Header />
       <form id="bc-form">
         <BcGrid>
-            <BcInputWrapper id="couseCode" label="Course code" help="This is the course code">
+            <BcInputWrapper id="couseCode" label="Course code" help={<iframe title="YouTube" style={{margin: '1rem auto'}} width="560" height="315" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>}>
               <TextField />
             </BcInputWrapper>
             <BcInputWrapper id="sessionId" label="Session ID" help={<HelpMe helpText="This is the session ID" />}>
