@@ -1,6 +1,7 @@
 .Grid {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .Grid > div {
