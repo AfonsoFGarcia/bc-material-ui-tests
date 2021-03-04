@@ -1,13 +1,13 @@
 import { Grid, FormLabel, Hidden, FormHelperText, Drawer, createMuiTheme, ThemeProvider } from "@material-ui/core"
 import HelpIcon from "@material-ui/icons/Help"
-import React, { PropsWithChildren, ReactNode, useState } from "react"
+import React, { ReactElement, ReactNode, useState } from "react"
 import styles from './BcInput.module.css'
 
 function Help({mobile = false, onClick}: {mobile?: boolean, onClick: () => void}) {
   return (<Hidden smDown={!mobile} mdUp={mobile}><HelpIcon className={styles.HelpIcon} onClick={onClick}/></Hidden>)
 }
 
-function BcInputWrapper({id, label, hint, help, fullWidth = false, inGrid = false, children} : PropsWithChildren<{id: string, label: string, help?: ReactNode, hint?: string, fullWidth?: boolean, inGrid?: boolean}>): JSX.Element {
+function BcInputWrapper({id, label, hint, help, fullWidth = false, inGrid = false, children} : {id: string, label: string, help?: ReactNode, hint?: string, fullWidth?: boolean, inGrid?: boolean, children: ReactElement}): JSX.Element {
   const theme = createMuiTheme({
     overrides: {
       MuiFormControl: {
@@ -30,7 +30,7 @@ function BcInputWrapper({id, label, hint, help, fullWidth = false, inGrid = fals
           </Grid>
           <Grid item xs={12} md={9} container alignItems="center">
             <div className={fullWidth ? styles.FullScreenInput : ''}>
-              {React.Children.map(children, child => React.isValidElement(child) ? React.cloneElement(child, {fullWidth, id, margin: 'dense', variant: 'outlined'}) : child)}
+              {React.cloneElement(children, {fullWidth, id, margin: 'dense', variant: 'outlined'})}
             </div>
             {help && <Help mobile onClick={() => setOpen(true)} />}
           </Grid>
