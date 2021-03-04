@@ -30,7 +30,7 @@ function HelpMe({ helpText }: { helpText: string }) {
   return <Typography style={{ margin: '1rem' }}>{helpText}</Typography>
 }
 
-function Header() {
+function Header({ reset }: { reset: () => void }) {
   return (
     <>
       <AppBar position="fixed">
@@ -56,7 +56,9 @@ function Header() {
         <Toolbar>
           <Typography variant="h6">Name Person</Typography>
           <div className={`${styles.HeaderIcons} ${styles.Spacing}`}>
-            <Button size="large">RESET</Button>
+            <Button size="large" onClick={reset}>
+              RESET
+            </Button>
             <Button size="large" variant="contained">
               SECONDARY OPTION
             </Button>
@@ -81,13 +83,13 @@ function Header() {
 function App() {
   const [expanded, setExpanded] = useState<string[]>(['generalInformation'])
 
-  const { control, handleSubmit } = useForm()
+  const { control, handleSubmit, reset } = useForm()
 
   const onSubmit = (data: any) => console.log(data)
 
   return (
     <LocalizationProvider dateAdapter={DateFnsUtils}>
-      <Header />
+      <Header reset={reset} />
       <form onSubmit={handleSubmit(onSubmit)} id="bc-form">
         <BcGroup id="generalInformation" title="General information" expanded={expanded} setExpanded={setExpanded}>
           <BcInputWrapper id="name" label="Name" control={control} defaultValue={''}>
