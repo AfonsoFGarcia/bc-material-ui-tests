@@ -77,17 +77,17 @@ function App() {
             <BcInputWrapper id="couseCode" label="Course code" help={<iframe title="YouTube" style={{margin: '1rem auto'}} width="560" height="315" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>}>
               <TextField />
             </BcInputWrapper>
-            <BcInputWrapper id="sessionId" label="Session ID" help={<HelpMe helpText="This is the session ID" />}>
+            <BcInputWrapper id="sessionId" label="Session ID" help={<HelpMe helpText="ID of the session where the course was lectured" />}>
               <TextField />
             </BcInputWrapper>
-            <BcInputWrapper fullWidth id="courseCategory" label="Course category" help={<HelpMe helpText="This is the course category" />}>
+            <BcInputWrapper fullWidth id="courseCategory" label="Course category">
               <Select value={courseCategory} onChange={event => setCourseCategory(event.target.value as string)}>
                 <MenuItem value={10}>Ten</MenuItem>
                 <MenuItem value={20}>Twenty</MenuItem>
                 <MenuItem value={30}>Thirty</MenuItem>
               </Select>
             </BcInputWrapper>
-            <BcInputWrapper id="dates" label="Dates" help={<HelpMe helpText="These are the dates" />}>
+            <BcInputWrapper id="dates" label="Dates">
               <DateRangePicker
                 startText=""
                 endText=""
@@ -102,14 +102,14 @@ function App() {
                 )}
               />
             </BcInputWrapper>
-            <BcInputWrapper fullWidth id="courseSubcategory" label="Course subcategory" help={<HelpMe helpText="This is the course subcategory" />}>
+            <BcInputWrapper fullWidth id="courseSubcategory" label="Course subcategory">
               <Select value={courseSubcategory} onChange={event => setCourseSubcategory(event.target.value as string)}>
                 <MenuItem value={10}>Ten</MenuItem>
                 <MenuItem value={20}>Twenty</MenuItem>
                 <MenuItem value={30}>Thirty</MenuItem>
               </Select>
             </BcInputWrapper>
-            <BcInputWrapper id="requestDate" label="Request date" help={<HelpMe helpText="This is the request date" />}>
+            <BcInputWrapper id="requestDate" label="Request date" help={<HelpMe helpText="Date when the training was requested" />}>
               <DateRangePicker
                 startText=""
                 endText=""
@@ -124,35 +124,35 @@ function App() {
                 )}
               />
             </BcInputWrapper>
-            <BcInputWrapper fullWidth id="courseType" label="Course type" help={<HelpMe helpText="This is the course type" />}>
+            <BcInputWrapper fullWidth id="courseType" label="Course type">
               <Select value={courseType} onChange={event => setCourseType(event.target.value as string)}>
                 <MenuItem value={10}>Ten</MenuItem>
                 <MenuItem value={20}>Twenty</MenuItem>
                 <MenuItem value={30}>Thirty</MenuItem>
               </Select>
             </BcInputWrapper>
-            <BcInputWrapper fullWidth id="includesActiveTraining" label="Includes active training" help={<HelpMe helpText="This is the includes active training" />}>
+            <BcInputWrapper fullWidth id="includesActiveTraining" label="Includes active training">
               <TextField />
             </BcInputWrapper>
-            <BcInputWrapper fullWidth id="obtainedQualifications" label="Obtained qualifications" help={<HelpMe helpText="These are the obtained qualifications" />}>
+            <BcInputWrapper fullWidth id="obtainedQualifications" label="Obtained qualifications">
               <TextField />
               </BcInputWrapper>
-            <BcInputWrapper id="obtainedQualificationsBool" label="Obtained qualifications" help={<HelpMe helpText="This is the obtained qualifications filter" />}>
+            <BcInputWrapper id="obtainedQualificationsBool" label="Obtained qualifications">
               <RadioGroup name="obtainedQualificationsBool" row value={obtainedQualificationsBool} onChange={event => setObtainedQualificationsBool(event.target.value)}>
                 <FormControlLabel value="yes" control={<Radio size="small" />} label="Yes" />
                 <FormControlLabel value="no" control={<Radio size="small" />} label="No" />
               </RadioGroup>
             </BcInputWrapper>
-            <BcInputWrapper id="documentNumber" label="Document number" help={<HelpMe helpText="This is the document number" />}>
+            <BcInputWrapper id="documentNumber" label="Document number">
               <TextField />
             </BcInputWrapper>
-            <BcInputWrapper id="activeQualifications" label="Active qualifications" help={<HelpMe helpText="This is the active qualifications filter" />}>
+            <BcInputWrapper id="activeQualifications" label="Active qualifications">
               <RadioGroup name="activeQualifications" row value={activeQualifications} onChange={event => setActiveQualifications(event.target.value)}>
                 <FormControlLabel value="all" control={<Radio size="small" />} label="Show all" />
                 <FormControlLabel value="active" control={<Radio size="small" />} label="Only show active qualifications" />
               </RadioGroup>
             </BcInputWrapper>
-            <BcInputWrapper id="toggleGroup" label="Toggle group" help={<HelpMe helpText="This is the toggle group" />}>
+            <BcInputWrapper id="toggleGroup" label="Toggle group">
               <ToggleButtonGroup exclusive value={toggleGroup} onChange={(_event, newValue) => setToggleGroup(newValue)}>
                 <ToggleButton value="university" size="small">
                   University
@@ -165,7 +165,7 @@ function App() {
                 </ToggleButton>
               </ToggleButtonGroup>
             </BcInputWrapper>
-            <BcInputWrapper id="radioButtonGroup" label="Radio button group" help={<HelpMe helpText="This is the radio button group" />}>
+            <BcInputWrapper id="radioButtonGroup" label="Radio button group">
               <RadioGroup name="radioButtonGroup" value={radioButtonGroup} onChange={event => setRadioButtonGroup(event.target.value)}>
                 <FormControlLabel value="meyrin" control={<Radio size="small" />} label="Meyrin" />
                 <FormControlLabel value="prevessin" control={<Radio size="small" />} label="Prevessin" />
@@ -173,7 +173,7 @@ function App() {
               </RadioGroup>
             </BcInputWrapper>
         </BcGrid>
-        <Grid container justify="flex-end">
+        <Grid container justify="flex-end" className={styles.Spacing}>
           <Button onClick={resetForm}>Reset</Button>
           <Button variant="contained" color="primary" style={{backgroundColor: 'green'}}>Retrieve</Button>
         </Grid>

@@ -3,3 +3,7 @@
     flex-grow: 1;
     justify-content: flex-end;
 }
+
+.Spacing > * {
+    margin-left: 8px;
+}

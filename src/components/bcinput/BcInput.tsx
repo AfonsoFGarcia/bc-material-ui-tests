@@ -1,10 +1,16 @@
-import { Grid, FormLabel, Hidden, FormHelperText, Drawer, createMuiTheme, ThemeProvider } from "@material-ui/core"
+import { Grid, FormLabel, Hidden, FormHelperText, Drawer, createMuiTheme, ThemeProvider, IconButton } from "@material-ui/core"
 import HelpIcon from "@material-ui/icons/Help"
 import React, { ReactElement, ReactNode, useState } from "react"
 import styles from './BcInput.module.css'
 
 function Help({mobile = false, onClick}: {mobile?: boolean, onClick: () => void}) {
-  return (<Hidden smDown={!mobile} mdUp={mobile}><HelpIcon className={styles.HelpIcon} onClick={onClick}/></Hidden>)
+  return (
+    <Hidden smDown={!mobile} mdUp={mobile}>
+      <IconButton onClick={onClick} className={styles.HelpIcon}>
+        <HelpIcon/>
+      </IconButton>
+    </Hidden>
+  )
 }
 
 function BcInputWrapper({id, label, hint, help, fullWidth = false, inGrid = false, children} : {id: string, label: string, help?: ReactNode, hint?: string, fullWidth?: boolean, inGrid?: boolean, children: ReactElement}): JSX.Element {
