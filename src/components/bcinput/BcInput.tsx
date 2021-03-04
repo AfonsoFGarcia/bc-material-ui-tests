@@ -1,4 +1,4 @@
-import { Grid, FormLabel, Hidden, FormHelperText, Drawer } from "@material-ui/core"
+import { Grid, FormLabel, Hidden, FormHelperText, Drawer, createMuiTheme, ThemeProvider } from "@material-ui/core"
 import HelpIcon from "@material-ui/icons/Help"
 import React, { PropsWithChildren, ReactNode, useState } from "react"
 import styles from './BcInput.module.css'
@@ -8,11 +8,21 @@ function Help({mobile = false, onClick}: {mobile?: boolean, onClick: () => void}
 }
 
 function BcInputWrapper({id, label, hint, help, fullWidth = false, inGrid = false, children} : PropsWithChildren<{id: string, label: string, help?: ReactNode, hint?: string, fullWidth?: boolean, inGrid?: boolean}>): JSX.Element {
+  const theme = createMuiTheme({
+    overrides: {
+      MuiFormControl: {
+        marginDense: {
+          marginTop: 0,
+        },
+      },
+    },
+  })
+
   const [isOpen, setOpen] = useState<boolean>(false)
     return (
-      <>
+      <ThemeProvider theme={theme}>
         <Grid container direction="row" className={inGrid ? styles.MarginMiddle : ""}>
-          <Grid item xs={12} md={3} className={styles.MarginTop8}>
+          <Grid item xs={12} md={3}>
             <Grid container alignItems="center" className={styles.NoWrap}>
               <FormLabel htmlFor={id} className={styles.LabelPadding}>{label}</FormLabel>
               {help && <Help onClick={() => setOpen(true)} />}
@@ -20,7 +30,7 @@ function BcInputWrapper({id, label, hint, help, fullWidth = false, inGrid = fals
           </Grid>
           <Grid item xs={12} md={9} container alignItems="center">
             <div className={fullWidth ? styles.FullScreenInput : ''}>
-              {React.Children.map(children, child => React.isValidElement(child) ? React.cloneElement(child, {fullWidth, id, margin: 'dense', variant: 'outlined', className: styles.MarginTop8}) : child)}
+              {React.Children.map(children, child => React.isValidElement(child) ? React.cloneElement(child, {fullWidth, id, margin: 'dense', variant: 'outlined'}) : child)}
             </div>
             {help && <Help mobile onClick={() => setOpen(true)} />}
           </Grid>
@@ -38,7 +48,7 @@ function BcInputWrapper({id, label, hint, help, fullWidth = false, inGrid = fals
         <Drawer anchor="bottom" open={isOpen} onClose={() => setOpen(false)}>
           {help}
         </Drawer>
-      </>
+      </ThemeProvider>
     )
 }
 
