@@ -1,7 +1,7 @@
 import { AppBar, Button, FormControlLabel, Grid, IconButton, MenuItem, Radio, RadioGroup, Select, Switch, TextField, Toolbar, Typography } from '@material-ui/core';
 import { Menu, Notifications, Search, Share } from '@material-ui/icons';
 import { ToggleButtonGroup, ToggleButton } from '@material-ui/lab';
-import { DateRangeDelimiter, DateRangePicker, LocalizationProvider } from '@material-ui/pickers';
+import { DatePicker, DateRangeDelimiter, DateRangePicker, LocalizationProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@material-ui/pickers/adapter/date-fns';
 import { DateRange } from '@material-ui/pickers/DateRangePicker/RangeTypes';
 import React, { useState } from 'react';
@@ -45,40 +45,16 @@ function Header() {
 }
 
 function App() {
-  const [contractPeriod, setContractPeriod] = useState<DateRange<Date>>([null, null]);
-  const [sex, setSex] = useState<string>('');
-  const [secondaryNationality, setSecondaryNationality] = useState<string>('');
-  const [primaryNationality, setPrimaryNationality] = useState<string>('');
-  const [preferredLanguage, setPreferredLanguage] = useState<string>('');
-  const [atCern, setAtCern] = useState<string>('');
-  const [toggleGroup, setToggleGroup] = useState<string>('');
-  const [radioButtonGroup, setRadioButtonGroup] = useState<string>('');
-  const [status, setStatus] = useState<string>('');
-  const [contractType, setContractType] = useState<string>('');
-  const [roles, setRoles] = useState<string>('');
+  const [expanded, setExpanded] = useState<string[]>(['generalInformation'])
+  const [birthdate, setBirthdate] = useState<Date | null>(null)
+  const [contractPeriod, setContractPeriod] = useState<DateRange<Date>>([null, null])
   const [costCentres, setCostCentres] = useState<string[]>([])
-  const [professionalCategory, setProfessionalCategory] = useState<string>('')
-  const [benchmarkJob, setBenchmarkJob] = useState<string>('')
-  const [residenceClass, setResidenceClass] = useState<string>('')
-  const [ppaUnit, setPpaUnit] = useState<string>('')
-  const [externalReason, setExternalReason] = useState<string>('')
-  const [switchState, setSwitchState] = useState<boolean>(false)
-
-
-  const resetForm = () => {
-    setContractPeriod([null, null])
-    setSex('')
-    setPrimaryNationality('')
-    setSecondaryNationality('')
-    const bcForm = document.getElementById("bc-form") as HTMLFormElement
-    bcForm && bcForm.reset();
-  }
 
   return (
     <LocalizationProvider dateAdapter={DateFnsUtils}>
       <Header />
       <form id="bc-form">
-        <BcGroup id="generalInformation" title="General information">
+        <BcGroup id="generalInformation" title="General information" expanded={expanded} setExpanded={setExpanded}>
             <BcInputWrapper id="name" label="Name">
               <TextField />
             </BcInputWrapper>
@@ -86,27 +62,27 @@ function App() {
               <TextField />
             </BcInputWrapper>
             <BcInputWrapper fullWidth id="primaryNationality" label="Primary Nationality">
-              <Select value={primaryNationality} onChange={event => setPrimaryNationality(event.target.value as string)}>
+              <Select>
                 <MenuItem value={'PT'}>Portuguese</MenuItem>
                 <MenuItem value={'ES'}>Spanish</MenuItem>
                 <MenuItem value={'NL'}>Dutch</MenuItem>
               </Select>
             </BcInputWrapper>
-            <BcInputWrapper id="personId" label="Person ID" help="Person ID help">
+            <BcInputWrapper id="personId" label="Person ID" help={<HelpMe helpText="Person ID help" />}>
               <TextField />
             </BcInputWrapper>
-            <BcInputWrapper fullWidth id="secondaryNationality" label="Secondary Nationality" help="Secondary nationality help">
-              <Select value={secondaryNationality} onChange={event => setSecondaryNationality(event.target.value as string)}>
+            <BcInputWrapper fullWidth id="secondaryNationality" label="Secondary Nationality" help={<HelpMe helpText="Secondary nationality help" />}>
+              <Select>
                 <MenuItem value={'PT'}>Portuguese</MenuItem>
                 <MenuItem value={'ES'}>Spanish</MenuItem>
                 <MenuItem value={'NL'}>Dutch</MenuItem>
               </Select>
             </BcInputWrapper>
-            <BcInputWrapper id="organicUnit" label="Organic Unit" help="Organic unit help">
+            <BcInputWrapper id="organicUnit" label="Organic Unit" help={<HelpMe helpText="Organic unit help" />}>
               <TextField />
             </BcInputWrapper>
             <BcInputWrapper id="sex" label="Sex">
-              <RadioGroup name="sex" row value={sex} onChange={event => setSex(event.target.value)}>
+              <RadioGroup name="sex" row>
                 <FormControlLabel value="M" control={<Radio />} label="Male" />
                 <FormControlLabel value="F" control={<Radio />} label="Female" />
               </RadioGroup>
@@ -115,13 +91,13 @@ function App() {
               <TextField />
             </BcInputWrapper>
             <BcInputWrapper id="birthdate" label="Birthdate">
-              <TextField />
+              <DatePicker value={birthdate} onChange={newValue => setBirthdate(newValue)} renderInput={(props) => <TextField {...props} variant="outlined" margin="dense" helperText="" />} />
             </BcInputWrapper>
             <BcInputWrapper id="office" label="Office">
               <TextField />
             </BcInputWrapper>
             <BcInputWrapper id="preferredLanguage" label="Preferred Language">
-              <RadioGroup name="sex" row value={preferredLanguage} onChange={event => setPreferredLanguage(event.target.value)}>
+              <RadioGroup name="sex" row>
                 <FormControlLabel value="EN" control={<Radio />} label="English" />
                 <FormControlLabel value="FR" control={<Radio />} label="French" />
               </RadioGroup>
@@ -130,28 +106,28 @@ function App() {
               <TextField />
             </BcInputWrapper>
             <BcInputWrapper id="atCern" label="At CERN">
-              <RadioGroup name="atCern" row value={atCern} onChange={event => setAtCern(event.target.value)}>
+              <RadioGroup name="atCern" row>
                 <FormControlLabel value="Y" control={<Radio />} label="Yes" />
                 <FormControlLabel value="N" control={<Radio />} label="No" />
               </RadioGroup>
             </BcInputWrapper>
           </BcGroup>
-          <BcGroup id="jobInformation" title="Job information">
+          <BcGroup id="jobInformation" title="Job information" expanded={expanded} setExpanded={setExpanded}>
             <BcInputWrapper fullWidth id="status" label="Status">
-              <Select value={status} onChange={event => setStatus(event.target.value as string)}>
+              <Select>
                 <MenuItem value={'STAF'}>Staff</MenuItem>
                 <MenuItem value={'FELL'}>Fellow</MenuItem>
                 <MenuItem value={'PJAS'}>Project Associate</MenuItem>
               </Select>
             </BcInputWrapper>
             <BcInputWrapper id="contractType" label="Contract Type">
-              <RadioGroup name="contractType" row value={contractType} onChange={event => setContractType(event.target.value)}>
+              <RadioGroup name="contractType" row>
                 <FormControlLabel value="LD" control={<Radio />} label="Limited duration" />
                 <FormControlLabel value="IC" control={<Radio />} label="Indefinite" />
               </RadioGroup>
             </BcInputWrapper>
             <BcInputWrapper fullWidth id="roles" label="Roles">
-              <Select value={roles} onChange={event => setRoles(event.target.value as string)}>
+              <Select>
                 <MenuItem value={'DG'}>Director General</MenuItem>
                 <MenuItem value={'DH'}>Department Head</MenuItem>
                 <MenuItem value={'GL'}>Group Leader</MenuItem>
@@ -161,7 +137,7 @@ function App() {
               <TextField />
             </BcInputWrapper>
             <BcInputWrapper fullWidth id="costCentres" label="Cost Centre(s)" help={<HelpMe helpText="Cost centre(s) help" />}>
-              <Select multiple value={costCentres} onChange={event => setCostCentres(event.target.value as string[])}>
+              <Select multiple  value={costCentres} onChange={event => setCostCentres(event.target.value as string[])}>
                 <MenuItem value={'71100'}>71100 - FAP-BC</MenuItem>
                 <MenuItem value={'71110'}>71110 - FAP-BC-PSS</MenuItem>
                 <MenuItem value={'71120'}>71120 - FAP-BC-PL</MenuItem>
@@ -171,7 +147,7 @@ function App() {
               <TextField />
             </BcInputWrapper>
             <BcInputWrapper fullWidth id="professionalCategory" label="Professional Category">
-              <Select value={professionalCategory} onChange={event => setProfessionalCategory(event.target.value as string)}>
+              <Select>
                 <MenuItem value={'1'}>Professional category 1</MenuItem>
                 <MenuItem value={'2'}>Professional category 2</MenuItem>
                 <MenuItem value={'3'}>Professional category 3</MenuItem>
@@ -193,21 +169,21 @@ function App() {
               />
             </BcInputWrapper>
             <BcInputWrapper fullWidth id="benchmarkJob" label="Benchmark Job">
-              <Select value={benchmarkJob} onChange={event => setBenchmarkJob(event.target.value as string)}>
+              <Select>
                 <MenuItem value={'1000'}>Benchmark job 1000</MenuItem>
                 <MenuItem value={'2000'}>Benchmark job 2000</MenuItem>
                 <MenuItem value={'3000'}>Benchmark job 3000</MenuItem>
               </Select>
             </BcInputWrapper>
             <BcInputWrapper fullWidth id="residenceClass" label="Residence Class">
-              <Select value={residenceClass} onChange={event => setResidenceClass(event.target.value as string)}>
+              <Select>
                 <MenuItem value={'1'}>Residence class 1</MenuItem>
                 <MenuItem value={'2'}>Residence class 2</MenuItem>
                 <MenuItem value={'3'}>Residence class 3</MenuItem>
               </Select>
             </BcInputWrapper>
             <BcInputWrapper fullWidth id="ppaUnit" label="PPA Unit">
-              <Select value={ppaUnit} onChange={event => setPpaUnit(event.target.value as string)}>
+              <Select>
                 <MenuItem value={'1'}>PPA unit 1</MenuItem>
                 <MenuItem value={'2'}>PPA unit 2</MenuItem>
                 <MenuItem value={'3'}>PPA unit 3</MenuItem>
@@ -223,7 +199,7 @@ function App() {
               <TextField disabled value="CH 01 READ-ONLY-5892" />
             </BcInputWrapper>
           </BcGroup>
-          <BcGroup id="leaveInformation" title="Leave information">
+          <BcGroup id="leaveInformation" title="Leave information" expanded={expanded} setExpanded={setExpanded}>
             <BcInputWrapper id="leaveTaken" label="Leave Taken">
               <TextField />
             </BcInputWrapper>
@@ -243,7 +219,7 @@ function App() {
               <TextField />
             </BcInputWrapper>
             <BcInputWrapper fullWidth id="externalReason" label="External Reason">
-              <Select value={externalReason} onChange={event => setExternalReason(event.target.value as string)}>
+              <Select>
                 <MenuItem value={'1'}>External reason 1</MenuItem>
                 <MenuItem value={'2'}>External reason 2</MenuItem>
                 <MenuItem value={'3'}>External reason 3</MenuItem>
@@ -253,9 +229,9 @@ function App() {
               <TextField />
             </BcInputWrapper>
         </BcGroup>
-        <BcGroup id="complicatedFields" title="Complicated fields that will be needed :(">
+        <BcGroup id="complicatedFields" title="Complicated fields that will be needed :(" expanded={expanded} setExpanded={setExpanded}>
             <BcInputWrapper id="toggleGroup" label="Toggle group">
-              <ToggleButtonGroup exclusive value={toggleGroup} onChange={(_event, newValue) => setToggleGroup(newValue)}>
+              <ToggleButtonGroup exclusive>
                 <ToggleButton value="university" size="small">
                   University
                 </ToggleButton>
@@ -268,10 +244,10 @@ function App() {
               </ToggleButtonGroup>
             </BcInputWrapper>
             <BcInputWrapper id="equivalentOfCheckbox" label="Equivalent of Checkbox">
-              <Switch checked={switchState} onChange={event => setSwitchState(event.target.checked)} />
+              <Switch />
             </BcInputWrapper>
             <BcInputWrapper id="radioButtonGroup" label="Radio button group">
-              <RadioGroup name="radioButtonGroup" value={radioButtonGroup} onChange={event => setRadioButtonGroup(event.target.value)}>
+              <RadioGroup name="radioButtonGroup">
                 <FormControlLabel value="meyrin" control={<Radio size="small" />} label="Meyrin" />
                 <FormControlLabel value="prevessin" control={<Radio size="small" />} label="Prevessin" />
                 <FormControlLabel value="geneva" control={<Radio size="small" />} label="Geneva" />
@@ -294,7 +270,7 @@ function App() {
             </BcInputWrapper>
         </BcGroup>
         <Grid container justify="flex-end" className={styles.Spacing}>
-          <Button onClick={resetForm}>Reset</Button>
+          <Button>Reset</Button>
           <Button variant="contained" color="primary" style={{backgroundColor: 'green'}}>Retrieve</Button>
         </Grid>
       </form>
