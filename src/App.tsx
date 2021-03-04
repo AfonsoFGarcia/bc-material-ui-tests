@@ -68,6 +68,7 @@ function App() {
   const [residenceClass, setResidenceClass] = useState<string>('')
   const [ppaUnit, setPpaUnit] = useState<string>('')
   const [externalReason, setExternalReason] = useState<string>('')
+  const [toggleGroup, setToggleGroup] = useState<string>('')
 
   return (
     <LocalizationProvider dateAdapter={DateFnsUtils}>
@@ -249,7 +250,7 @@ function App() {
       </BcGroup>
       <BcGroup id="complicatedFields" title="Complicated fields that will be needed :(" expanded={expanded} setExpanded={setExpanded}>
           <BcInputWrapper id="toggleGroup" label="Toggle group">
-            <ToggleButtonGroup exclusive>
+            <ToggleButtonGroup exclusive value={toggleGroup} onChange={(_event, value) => setToggleGroup(value)}>
               <ToggleButton value="university" size="small">
                 University
               </ToggleButton>
