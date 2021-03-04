@@ -12,10 +12,10 @@ import HelpIcon from '@material-ui/icons/Help'
 import React, { ReactElement, ReactNode, useState } from 'react'
 import styles from './BcInput.module.css'
 
-function Help({ mobile = false, onClick }: { mobile?: boolean; onClick: () => void }) {
+function Help({ mobile = false, onClick, fieldName }: { mobile?: boolean; onClick: () => void; fieldName: string }) {
   return (
     <Hidden smDown={!mobile} mdUp={mobile}>
-      <IconButton onClick={onClick} className={styles.HelpIcon}>
+      <IconButton onClick={onClick} className={styles.HelpIcon} aria-label={`${fieldName} help`}>
         <HelpIcon />
       </IconButton>
     </Hidden>
@@ -58,14 +58,14 @@ function BcInputWrapper({
             <FormLabel htmlFor={id} className={styles.LabelPadding}>
               {label}
             </FormLabel>
-            {help && <Help onClick={() => setOpen(true)} />}
+            {help && <Help onClick={() => setOpen(true)} fieldName={label} />}
           </Grid>
         </Grid>
         <Grid item xs={12} md={9} container alignItems="center">
           <div className={fullWidth ? styles.FullScreenInput : ''}>
             {React.cloneElement(children, { fullWidth, id, margin: 'dense', variant: 'outlined' })}
           </div>
-          {help && <Help mobile onClick={() => setOpen(true)} />}
+          {help && <Help mobile onClick={() => setOpen(true)} fieldName={label} />}
         </Grid>
         {hint && (
           <>
