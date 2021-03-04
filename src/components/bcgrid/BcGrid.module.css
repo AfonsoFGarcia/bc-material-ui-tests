@@ -1,22 +1,22 @@
 .Grid {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
 }
 
 .Grid > div {
-    flex: 50%
+  flex: 50%;
 }
 
 @media screen and (max-width: 959px) {
-    .Grid > div {
-        flex: 100%
-    }
+  .Grid > div {
+    flex: 100%;
+  }
 }
 
 @media screen and (min-width: 1920px) {
-    .Grid > div {
-        flex: 33.33%
-    }
+  .Grid > div {
+    flex: 33.33%;
+  }
 }

@@ -1,21 +1,21 @@
 .HeaderIcons {
-    display: flex; 
-    flex-grow: 1;
-    justify-content: flex-end;
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
 }
 
 .Spacing > * {
-    margin-left: 8px !important;
+  margin-left: 8px !important;
 }
 
 .OffsetSecondaryBar {
-    top: 64px !important;
+  top: 64px !important;
 }
 
 .OffsetHeader {
-    height: 128px;
+  height: 128px;
 }
 
 .Green {
-    background-color: green !important;
+  background-color: green !important;
 }
