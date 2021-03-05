@@ -25,6 +25,7 @@ import styles from './App.module.css'
 import BcGroup from './components/bcgroup/BcGroup'
 import { useForm } from 'react-hook-form'
 import { DateRange } from '@material-ui/pickers/DateRangePicker/RangeTypes'
+import Autoplayer from './components/autoplayer/Autoplayer'
 
 function HelpMe({ helpText }: { helpText: string }) {
   return <Typography style={{ margin: '1rem' }}>{helpText}</Typography>
@@ -86,7 +87,6 @@ function App() {
   const { control, handleSubmit, reset } = useForm()
 
   const onSubmit = (data: any) => console.log(data)
-
   return (
     <LocalizationProvider dateAdapter={DateFnsUtils}>
       <Header reset={reset} />
@@ -100,18 +100,7 @@ function App() {
             defaultValue={''}
             id="cernID"
             label="CERN ID"
-            help={
-              <iframe
-                title="YouTube"
-                style={{ margin: '1rem auto' }}
-                width="560"
-                height="315"
-                src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            }
+            help={<Autoplayer videoId="dQw4w9WgXcQ" />}
           >
             <TextField />
           </BcInputWrapper>
@@ -359,7 +348,12 @@ function App() {
               <ToggleButton value="other">Other</ToggleButton>
             </ToggleButtonGroup>
           </BcInputWrapper>
-          <BcInputWrapper<boolean> id="equivalentOfCheckbox" label="Equivalent of Checkbox" control={control} defaultValue={false}>
+          <BcInputWrapper<boolean>
+            id="equivalentOfCheckbox"
+            label="Equivalent of Checkbox"
+            control={control}
+            defaultValue={false}
+          >
             <Switch />
           </BcInputWrapper>
           <BcInputWrapper id="radioButtonGroup" label="Radio button group" control={control} defaultValue={''}>
