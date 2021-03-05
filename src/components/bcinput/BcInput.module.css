@@ -4,6 +4,7 @@
 
 .HelpIcon {
   margin-left: 0.5rem;
+  padding: 5px !important;
 }
 
 .LabelPadding {
@@ -12,7 +13,6 @@
 
 .NoWrap {
   flex-wrap: nowrap !important;
-  min-height: 48px;
 }
 
 .MarginMiddle {

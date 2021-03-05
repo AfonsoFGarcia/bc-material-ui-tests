@@ -162,8 +162,8 @@ function App() {
           </BcInputWrapper>
           <BcInputWrapper id="sex" label="Sex" control={control} defaultValue={''}>
             <RadioGroup row>
-              <FormControlLabel value="M" control={<Radio />} label="Male" />
-              <FormControlLabel value="F" control={<Radio />} label="Female" />
+              <FormControlLabel value="M" control={<Radio size="small" />} label="Male" />
+              <FormControlLabel value="F" control={<Radio size="small" />} label="Female" />
             </RadioGroup>
           </BcInputWrapper>
           <BcInputWrapper fullWidth id="emailAddress" label="Email Address" control={control} defaultValue={''}>
@@ -183,8 +183,8 @@ function App() {
           </BcInputWrapper>
           <BcInputWrapper id="preferredLanguage" label="Preferred Language" control={control} defaultValue={''}>
             <RadioGroup row>
-              <FormControlLabel value="EN" control={<Radio />} label="English" />
-              <FormControlLabel value="FR" control={<Radio />} label="French" />
+              <FormControlLabel value="EN" control={<Radio size="small" />} label="English" />
+              <FormControlLabel value="FR" control={<Radio size="small" />} label="French" />
             </RadioGroup>
           </BcInputWrapper>
           <BcInputWrapper fullWidth id="primaryPostbox" label="Primary Postbox" control={control} defaultValue={''}>
@@ -192,8 +192,8 @@ function App() {
           </BcInputWrapper>
           <BcInputWrapper id="atCern" label="At CERN" control={control} defaultValue={''}>
             <RadioGroup row>
-              <FormControlLabel value="Y" control={<Radio />} label="Yes" />
-              <FormControlLabel value="N" control={<Radio />} label="No" />
+              <FormControlLabel value="Y" control={<Radio size="small" />} label="Yes" />
+              <FormControlLabel value="N" control={<Radio size="small" />} label="No" />
             </RadioGroup>
           </BcInputWrapper>
         </BcGroup>
@@ -207,8 +207,8 @@ function App() {
           </BcInputWrapper>
           <BcInputWrapper id="contractType" label="Contract Type" control={control} defaultValue={''}>
             <RadioGroup row>
-              <FormControlLabel value="LD" control={<Radio />} label="Limited duration" />
-              <FormControlLabel value="IC" control={<Radio />} label="Indefinite" />
+              <FormControlLabel value="LD" control={<Radio size="small" />} label="Limited duration" />
+              <FormControlLabel value="IC" control={<Radio size="small" />} label="Indefinite" />
             </RadioGroup>
           </BcInputWrapper>
           <BcInputWrapper fullWidth id="roles" label="Roles" control={control} defaultValue={''}>
@@ -353,7 +353,7 @@ function App() {
           setExpanded={setExpanded}
         >
           <BcInputWrapper id="toggleGroup" label="Toggle group" control={control} defaultValue={''}>
-            <ToggleButtonGroup exclusive>
+            <ToggleButtonGroup exclusive size="small">
               <ToggleButton value="university">University</ToggleButton>
               <ToggleButton value="school">School</ToggleButton>
               <ToggleButton value="other">Other</ToggleButton>
@@ -364,9 +364,9 @@ function App() {
           </BcInputWrapper>
           <BcInputWrapper id="radioButtonGroup" label="Radio button group" control={control} defaultValue={''}>
             <RadioGroup>
-              <FormControlLabel value="meyrin" control={<Radio />} label="Meyrin" />
-              <FormControlLabel value="prevessin" control={<Radio />} label="Prevessin" />
-              <FormControlLabel value="geneva" control={<Radio />} label="Geneva" />
+              <FormControlLabel value="meyrin" control={<Radio size="small" />} label="Meyrin" />
+              <FormControlLabel value="prevessin" control={<Radio size="small" />} label="Prevessin" />
+              <FormControlLabel value="geneva" control={<Radio size="small" />} label="Geneva" />
             </RadioGroup>
           </BcInputWrapper>
           <BcInputWrapper id="field1" label="Field" control={control} defaultValue={''}>

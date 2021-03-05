@@ -34,6 +34,20 @@ const theme = createMuiTheme({
       root: {
         borderRadius: 0,
       },
+      inputMarginDense: {
+        paddingTop: '7px',
+        paddingBottom: '7px',
+      },
+    },
+    MuiFormLabel: {
+      root: {
+        fontSize: '0.75rem',
+      },
+    },
+    MuiFormControlLabel: {
+      label: {
+        fontSize: '0.75rem',
+      },
     },
   },
 })
